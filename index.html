@@ -57,7 +57,7 @@ input{
 <!-- HE IS STILL HERE -->
 <!-- NEXUS -->
 <!-- ACCESS LEVEL REQUIRED -->
-<!-- CODE: MNM-451 -->
+<!-- NEXUS NODE: ACTIVE -->
 
 <div class="container">
 
@@ -97,7 +97,14 @@ input.addEventListener("keydown", function(e){
             <br>
             Добро пожаловать обратно, Hox.
             `;
+typeText("Подключение к узлу NEXUS...");
+setTimeout(() => {
+  typeText("Сигнал найден.");
+}, 1200);
 
+setTimeout(() => {
+  typeText("ОТКРЫТЬ АРХИВ? [Y/N]");
+}, 2400);
         } else {
 
             message.innerHTML = `
