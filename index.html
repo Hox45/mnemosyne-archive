@@ -5,6 +5,7 @@
 <title>NEXUS</title>
 
 <style>
+
 body{
     background:black;
     color:#00ff88;
@@ -17,62 +18,46 @@ body{
 }
 
 .container{
-    width:600px;
+    width:700px;
 }
 
 h1{
-    font-size:42px;
-    margin-bottom:30px;
-}
-
-#terminal{
-    font-size:22px;
+    font-size:60px;
 }
 
 input{
-    background:none;
+    background:black;
+    color:#00ff88;
     border:none;
     outline:none;
-    color:#00ff88;
+    font-size:32px;
     font-family:monospace;
-    font-size:22px;
-    width:400px;
 }
 
-.small{
-    margin-top:20px;
-    font-size:14px;
-    opacity:0.7;
-}
-
-.message{
-    margin-top:20px;
-    line-height:1.7;
-}
 </style>
+
 </head>
 
 <body>
 
 <!-- HE IS STILL HERE -->
-<!-- NEXUS -->
+<!-- PROJECT MORPHEUS -->
 <!-- ACCESS LEVEL REQUIRED -->
-<!-- NEXUS NODE: ACTIVE -->
 <!-- CODE: MNM-451 -->
-    
+
 <div class="container">
 
 <h1>NEXUS</h1>
 
-<div id="terminal">
+<div>
 > <input type="text" id="codeInput" autofocus>
 </div>
 
-<div class="small">
+<br>
+
+<div id="message">
 УРОВЕНЬ ДОСТУПА: НИЗКИЙ
 </div>
-
-<div class="message" id="message"></div>
 
 </div>
 
@@ -81,11 +66,34 @@ input{
 const input = document.getElementById("codeInput");
 const message = document.getElementById("message");
 
-input.addEventListener("keydown", function(e){
+function typeText(text){
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+
+        if(i < text.length){
+
+            message.innerHTML += text.charAt(i);
+            i++;
+
+        } else {
+
+            clearInterval(interval);
+
+        }
+
+    }, 30);
+
+}
+
+input.addEventListener("keydown", (e) => {
 
     if(e.key === "Enter"){
 
         const code = input.value;
+
+        message.innerHTML = "";
 
         if(code === "MNM-451"){
 
@@ -96,31 +104,43 @@ input.addEventListener("keydown", function(e){
             <br>
             ДОСТУП РАЗРЕШЕН<br>
             <br>
-            Добро пожаловать обратно, Hox.
+            Добро пожаловать обратно, Хокс.
             `;
-typeText("Подключение к узлу NEXUS...");
-setTimeout(() => {
-  typeText("Сигнал найден.");
-}, 1200);
 
-setTimeout(() => {
-  typeText("ОТКРЫТЬ АРХИВ? [Y/N]");
-document.addEventListener("keydown", (e) => {
+            setTimeout(() => {
 
-    if(e.key.toLowerCase() === "y"){
+                typeText("Подключение к узлу NEXUS...");
 
-        window.location.href = "hox.html";
+            }, 1000);
 
-    }
+            setTimeout(() => {
 
-    if(e.key.toLowerCase() === "n"){
+                typeText("<br>Сигнал найден.");
 
-        message.innerHTML += "<br><br>ДОСТУП ОТКЛОНЕН";
+            }, 2500);
 
-    }
+            setTimeout(() => {
 
-});
-}, 2400);
+                typeText("<br><br>ОТКРЫТЬ АРХИВ? [Y/N]");
+
+                document.addEventListener("keydown", (e) => {
+
+                    if(e.key.toLowerCase() === "y"){
+
+                        window.location.href = "hox.html";
+
+                    }
+
+                    if(e.key.toLowerCase() === "n"){
+
+                        message.innerHTML += "<br><br>ДОСТУП ОТКЛОНЕН";
+
+                    }
+
+                });
+
+            }, 4000);
+
         } else {
 
             message.innerHTML = `
