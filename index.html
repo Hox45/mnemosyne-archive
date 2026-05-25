@@ -104,6 +104,21 @@ setTimeout(() => {
 
 setTimeout(() => {
   typeText("ОТКРЫТЬ АРХИВ? [Y/N]");
+document.addEventListener("keydown", (e) => {
+
+    if(e.key.toLowerCase() === "y"){
+
+        window.location.href = "hox.html";
+
+    }
+
+    if(e.key.toLowerCase() === "n"){
+
+        message.innerHTML += "<br><br>ДОСТУП ОТКЛОНЕН";
+
+    }
+
+});
 }, 2400);
         } else {
 
