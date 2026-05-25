@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mnemosyne Archive</title>
+<title>Архив Мнемосинов</title>
 
 <style>
 body{
     background:black;
-    color:#00ff66;
+    color:#00ff88;
     font-family:monospace;
     display:flex;
     justify-content:center;
@@ -18,87 +17,102 @@ body{
 }
 
 .container{
-    width:700px;
+    width:600px;
 }
 
-.title{
-    font-size:32px;
-    margin-bottom:20px;
+h1{
+    font-size:42px;
+    margin-bottom:30px;
 }
 
-.input-line{
-    display:flex;
-    align-items:center;
-    gap:10px;
+#terminal{
+    font-size:22px;
 }
 
 input{
-    background:black;
+    background:none;
     border:none;
-    color:#00ff66;
-    font-family:monospace;
-    font-size:20px;
     outline:none;
-    width:100%;
+    color:#00ff88;
+    font-family:monospace;
+    font-size:22px;
+    width:400px;
 }
 
-.hidden{
+.small{
     margin-top:20px;
-    color:#006622;
+    font-size:14px;
+    opacity:0.7;
+}
+
+.message{
+    margin-top:20px;
+    line-height:1.7;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HE IS STILL HERE -->
+<!-- PROJECT MORPHEUS -->
+<!-- ACCESS LEVEL REQUIRED -->
+<!-- CODE: MNM-451 -->
+
 <div class="container">
 
-<div class="title">
-MNEMOSYNE ARCHIVE
+<h1>АРХИВ МНЕМОСИНОВ</h1>
+
+<div id="terminal">
+> <input type="text" id="codeInput" autofocus>
 </div>
 
-<div class="input-line">
-<span>></span>
-<input id="command" autocomplete="off" autofocus>
+<div class="small">
+УРОВЕНЬ ДОСТУПА: НИЗКИЙ
 </div>
 
-<div class="hidden">
-ACCESS LEVEL: LOW
-</div>
+<div class="message" id="message"></div>
 
 </div>
 
 <script>
 
-const input = document.getElementById("command");
+const input = document.getElementById("codeInput");
+const message = document.getElementById("message");
 
 input.addEventListener("keydown", function(e){
 
-if(e.key === "Enter"){
+    if(e.key === "Enter"){
 
-const value = input.value.toLowerCase();
+        const code = input.value;
 
-if(value === "hox"){
-window.location.href = "hox.html";
-}
+        if(code === "MNM-451"){
 
-else if(value === "mnemosyne"){
-window.location.href = "mnemosyne.html";
-}
+            message.innerHTML = `
+            <br>
+            ПРОВЕРКА ПАМЯТИ...<br>
+            ПРОВЕРКА ЛИЧНОСТИ...<br>
+            <br>
+            ДОСТУП РАЗРЕШЕН<br>
+            <br>
+            Добро пожаловать обратно, Hox.
+            `;
 
-else{
-alert("ADDRESS NOT FOUND");
-}
+        } else {
 
-}
+            message.innerHTML = `
+            <br>
+            ОШИБКА: КОД НЕ НАЙДЕН<br>
+            ПОПЫТКА ЗАПИСАНА
+            `;
+
+        }
+
+    }
 
 });
 
 </script>
-
-<!-- HE IS STILL HERE -->
-<!-- PROJECT MORPHEUS -->
-<!-- ACCESS LEVEL REQUIRED -->
 
 </body>
 </html>
