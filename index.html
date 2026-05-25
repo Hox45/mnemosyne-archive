@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mnemosyne Archive</title>
+
+<style>
+body{
+    background:black;
+    color:#00ff66;
+    font-family:monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.container{
+    width:700px;
+}
+
+.title{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.input-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+input{
+    background:black;
+    border:none;
+    color:#00ff66;
+    font-family:monospace;
+    font-size:20px;
+    outline:none;
+    width:100%;
+}
+
+.hidden{
+    margin-top:20px;
+    color:#006622;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">
+MNEMOSYNE ARCHIVE
+</div>
+
+<div class="input-line">
+<span>></span>
+<input id="command" autocomplete="off" autofocus>
+</div>
+
+<div class="hidden">
+ACCESS LEVEL: LOW
+</div>
+
+</div>
+
+<script>
+
+const input = document.getElementById("command");
+
+input.addEventListener("keydown", function(e){
+
+if(e.key === "Enter"){
+
+const value = input.value.toLowerCase();
+
+if(value === "hox"){
+window.location.href = "hox.html";
+}
+
+else if(value === "mnemosyne"){
+window.location.href = "mnemosyne.html";
+}
+
+else{
+alert("ADDRESS NOT FOUND");
+}
+
+}
+
+});
+
+</script>
+
+<!-- HE IS STILL HERE -->
+<!-- PROJECT MORPHEUS -->
+<!-- ACCESS LEVEL REQUIRED -->
+
+</body>
+</html>
