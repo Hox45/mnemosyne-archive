@@ -10,119 +10,98 @@ body{
     background:black;
     color:#00ff88;
     font-family:monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
     margin:0;
-    padding:40px;
+}
+
+.container{
+    width:700px;
 }
 
 h1{
-    font-size:48px;
-    margin-bottom:10px;
+    font-size:60px;
 }
 
-.sub{
-    opacity:0.7;
-    margin-bottom:40px;
-}
-
-.block{
-    border:1px solid #00ff88;
-    padding:20px;
-    margin-bottom:20px;
-    transition:0.3s;
-}
-
-.block:hover{
-    background:#001a0d;
-}
-
-a{
+input{
+    background:black;
     color:#00ff88;
-    text-decoration:none;
-    display:block;
-}
-
-.small{
-    font-size:14px;
-    opacity:0.6;
-    margin-top:10px;
-}
-
-.glitch{
-    animation: glitch 2s infinite;
-}
-
-@keyframes glitch{
-    0%{opacity:1;}
-    50%{opacity:0.4;}
-    100%{opacity:1;}
+    border:none;
+    outline:none;
+    font-size:32px;
+    font-family:monospace;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- NEXUS CORE -->
-<!-- MEMORY NETWORK ACTIVE -->
-<!-- SOME FILES WERE REMOVED -->
-<!-- HE REMEMBERS EVERYTHING -->
+<!-- NEXUS -->
+<!-- ACCESS LEVEL REQUIRED -->
+<!-- NEXUS NODE: ACTIVE -->
 
-<h1 class="glitch">NEXUS</h1>
+<div class="container">
 
-<div class="sub">
-СЕТЬ АКТИВНА
-</div>
+<h1>NEXUS</h1>
 
-<div class="block">
-<a href="#">
-[ ARCHIVE ]
-<div class="small">
-Архив памяти и циклов
-</div>
-</a>
-</div>
-
-<div class="block">
-<a href="#">
-[ HUNT_PROTOCOL ]
-<div class="small">
-Записи охот и тренировок
-</div>
-</a>
-</div>
-
-<div class="block">
-<a href="#">
-[ MORPHEUS ]
-<div class="small">
-Закрытый проект
-</div>
-</a>
-</div>
-
-<div class="block">
-<a href="#">
-[ ECHO ]
-<div class="small">
-Сообщения старого Hox
-</div>
-</a>
-</div>
-
-<div class="block">
-<a href="#">
-[ VOID ]
-<div class="small">
-Поврежденные и удаленные файлы
-</div>
-</a>
+<div>
+> <input type="text" id="codeInput" autofocus>
 </div>
 
 <br>
 
-<div class="small">
-NEXUS NODE CONNECTED
+<div id="message">
+УРОВЕНЬ ДОСТУПА: НИЗКИЙ
 </div>
+
+</div>
+
+<script>
+
+const input = document.getElementById("codeInput");
+const message = document.getElementById("message");
+
+input.addEventListener("keydown", (e) => {
+
+    if(e.key === "Enter"){
+
+        const code = input.value;
+
+        if(code === "ACTIVE"){
+
+            message.innerHTML = `
+            <br>
+            СОЕДИНЕНИЕ УСТАНОВЛЕНО<br>
+            NEXUS NODE ONLINE<br>
+            <br>
+            ДОСТУП К СЕКТОРУ 7 РАЗРЕШЕН
+            `;
+
+            setTimeout(() => {
+
+                window.location.href = "sector7.html";
+
+            }, 2000);
+
+        } else {
+
+            message.innerHTML = `
+            <br>
+            ОШИБКА: КОД НЕ НАЙДЕН<br>
+            ПОПЫТКА ЗАПИСАНА
+            `;
+
+        }
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
