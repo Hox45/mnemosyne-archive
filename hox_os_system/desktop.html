@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>HOX OS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="desktop">
+
+<div class="taskbar">
+  <span>HOX OS</span>
+  <span id="clock"></span>
+</div>
+
+<div class="desktop-icons">
+
+<div class="icon" onclick="openWindow('terminal-window')">
+🖥
+<p>TERMINAL</p>
+</div>
+
+<div class="icon" onclick="openWindow('archive-window')">
+📁
+<p>ARCHIVE</p>
+</div>
+
+<div class="icon" onclick="openWindow('signal-window')">
+📡
+<p>SIGNAL</p>
+</div>
+
+<div class="icon" onclick="openWindow('observer-window')">
+👁
+<p>OBSERVER</p>
+</div>
+
+</div>
+
+<div class="window hidden" id="terminal-window">
+<div class="window-header">HOX TERMINAL</div>
+<div class="window-content">
+<p>root@hox:~$ help</p>
+<p>scan</p>
+<p>sector7</p>
+<p>observer</p>
+</div>
+</div>
+
+<div class="window hidden" id="archive-window">
+<div class="window-header">ARCHIVE</div>
+<div class="window-content">
+<p>memory_001.log</p>
+<p>signal_09.dat</p>
+<p>node_black.txt</p>
+</div>
+</div>
+
+<div class="window hidden" id="signal-window">
+<div class="window-header">SIGNAL MONITOR</div>
+<div class="window-content">
+<p>UNKNOWN SIGNAL DETECTED</p>
+<p>NODE STATUS: ACTIVE</p>
+</div>
+</div>
+
+<div class="window hidden" id="observer-window">
+<div class="window-header">OBSERVER</div>
+<div class="window-content">
+<p>CAMERA STATUS: ONLINE</p>
+<p>WATCHING NODE...</p>
+</div>
+</div>
+
+<script src="system.js"></script>
+</body>
+</html>

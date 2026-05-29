@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>NEXUS LOGIN</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-screen">
+
+<div class="login-box">
+<h1>NEXUS SYSTEM</h1>
+<p>INITIALIZING NETWORK...</p>
+
+<input type="password" id="password" placeholder="ENTER ACCESS KEY">
+<button onclick="login()">ENTER</button>
+
+<p id="status"></p>
+</div>
+
+<script>
+function login(){
+  const pass = document.getElementById("password").value;
+  const status = document.getElementById("status");
+
+  if(pass === "HOX"){
+    status.innerText = "ACCESS GRANTED";
+    setTimeout(()=>{
+      window.location.href = "desktop.html";
+    },1000);
+  } else {
+    status.innerText = "ACCESS DENIED";
+  }
+}
+</script>
+
+</body>
+</html>
