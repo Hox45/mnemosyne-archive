@@ -1,93 +1,161 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<title>NEXUS</title>
-
-<style>
-
-body{
-    background:black;
-    color:#00ff88;
-    font-family:monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-}
-
-.container{
-    width:700px;
-}
-
-h1{
-    font-size:60px;
-}
-
-input{
-    background:black;
-    color:#00ff88;
-    border:none;
-    outline:none;
-    font-size:32px;
-    font-family:monospace;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<!-- NEXUS -->
-<!-- ACCESS LEVEL REQUIRED -->
-<!-- NEXUS NODE: ACTIVE -->
-
-<div class="container">
-
-<h1>NEXUS</h1>
-
-<div>
-> <input type="text" id="codeInput" autofocus>
-</div>
-
-<br>
-
-<div id="message">
-УРОВЕНЬ ДОСТУПА: НИЗКИЙ
-</div>
-
-</div>
-
 <script>
 
 const input = document.getElementById("codeInput");
 const message = document.getElementById("message");
 
+function safe(text){
+
+    const blocked = [
+        "<script",
+        "select ",
+        "drop ",
+        "insert ",
+        "delete ",
+        "--",
+        ";",
+        "xp_"
+    ];
+
+    text = text.toLowerCase();
+
+    for(let bad of blocked){
+
+        if(text.includes(bad)){
+            return false;
+        }
+
+    }
+
+    return true;
+}
+
+function typeText(text){
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+
+        if(i < text.length){
+
+            message.innerHTML += text.charAt(i);
+            i++;
+
+        } else {
+
+            clearInterval(interval);
+
+        }
+
+    }, 30);
+
+}
+
 input.addEventListener("keydown", (e) => {
 
     if(e.key === "Enter"){
 
-        const code = input.value;
+        const code = input.value.trim();
 
-        if(code === "ACTIVE"){
+        if(!safe(code)){
 
             message.innerHTML = `
             <br>
-            СОЕДИНЕНИЕ УСТАНОВЛЕНО<br>
-            NEXUS NODE ONLINE<br>
+            SECURITY ALERT<br>
+            INPUT BLOCKED
+            `;
+
+            input.value = "";
+            return;
+        }
+
+        message.innerHTML = "";
+
+        // архив
+        if(code === "MNM-451"){
+
+            message.innerHTML = `
             <br>
-            ДОСТУП К СЕКТОРУ 7 РАЗРЕШЕН
+            ПРОВЕРКА ПАМЯТИ...<br>
+            ПРОВЕРКА ЛИЧНОСТИ...<br>
+            <br>
+            ДОСТУП РАЗРЕШЕН<br>
+            <br>
+            Добро пожаловать обратно, Хокс.
             `;
 
             setTimeout(() => {
 
-                window.location.href = "sector7.html";
+                typeText("Подключение к узлу NEXUS...");
 
-            }, 2000);
+            }, 1000);
 
-        } else {
+            setTimeout(() => {
+
+                typeText("<br>Сигнал найден.");
+
+            }, 2500);
+
+            setTimeout(() => {
+
+                typeText("<br><br>ОТКРЫТЬ АРХИВ? [Y/N]");
+
+                document.addEventListener("keydown", (e) => {
+
+                    if(e.key.toLowerCase() === "y"){
+
+                        window.location.href = "hox_os_system/index.html";
+
+                    }
+
+                    if(e.key.toLowerCase() === "n"){
+
+                        message.innerHTML += "<br><br>ДОСТУП ОТКЛОНЕН";
+
+                    }
+
+                });
+
+            }, 4000);
+
+        }
+
+        // рабочий стол
+        else if(code.toLowerCase() === "desktop"){
+
+            window.location.href = "hox_os_system/index.html";
+
+        }
+
+        // терминал
+        else if(code.toLowerCase() === "terminal"){
+
+            window.location.href = "hox_admin_terminal/index.html";
+
+        }
+
+        // сектор
+        else if(code.toLowerCase() === "sector7"){
+
+            window.location.href = "sector7.html";
+
+        }
+
+        // помощь
+        else if(code.toLowerCase() === "help"){
+
+            message.innerHTML = `
+            <br>
+            КОМАНДЫ:<br><br>
+
+            desktop<br>
+            terminal<br>
+            sector7<br>
+            MNM-451
+            `;
+
+        }
+
+        else{
 
             message.innerHTML = `
             <br>
@@ -97,11 +165,9 @@ input.addEventListener("keydown", (e) => {
 
         }
 
+        input.value = "";
     }
 
 });
 
 </script>
-
-</body>
-</html>
