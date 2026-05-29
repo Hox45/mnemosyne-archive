@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 <meta charset="UTF-8">
 <title>NEXUS</title>
@@ -40,11 +41,6 @@ input{
 
 <body>
 
-<!-- HE IS STILL HERE -->
-<!-- PROJECT MORPHEUS -->
-<!-- ACCESS LEVEL REQUIRED -->
-<!-- CODE: MNM-451 -->
-
 <div class="container">
 
 <h1>NEXUS</h1>
@@ -65,6 +61,32 @@ input{
 
 const input = document.getElementById("codeInput");
 const message = document.getElementById("message");
+
+function safe(text){
+
+    const blocked = [
+        "<script",
+        "select ",
+        "drop ",
+        "insert ",
+        "delete ",
+        "--",
+        ";",
+        "xp_"
+    ];
+
+    text = text.toLowerCase();
+
+    for(let bad of blocked){
+
+        if(text.includes(bad)){
+            return false;
+        }
+
+    }
+
+    return true;
+}
 
 function typeText(text){
 
@@ -91,7 +113,19 @@ input.addEventListener("keydown", (e) => {
 
     if(e.key === "Enter"){
 
-        const code = input.value;
+        const code = input.value.trim();
+
+        if(!safe(code)){
+
+            message.innerHTML = `
+            <br>
+            SECURITY ALERT<br>
+            INPUT BLOCKED
+            `;
+
+            input.value = "";
+            return;
+        }
 
         message.innerHTML = "";
 
@@ -127,7 +161,7 @@ input.addEventListener("keydown", (e) => {
 
                     if(e.key.toLowerCase() === "y"){
 
-                        window.location.href = "hox.html";
+                        window.location.href = "hox_os_system/index.html";
 
                     }
 
@@ -141,7 +175,41 @@ input.addEventListener("keydown", (e) => {
 
             }, 4000);
 
-        } else {
+        }
+
+        else if(code.toLowerCase() === "desktop"){
+
+            window.location.href = "hox_os_system/index.html";
+
+        }
+
+        else if(code.toLowerCase() === "terminal"){
+
+            window.location.href = "hox_admin_terminal/index.html";
+
+        }
+
+        else if(code.toLowerCase() === "sector7"){
+
+            window.location.href = "sector7.html";
+
+        }
+
+        else if(code.toLowerCase() === "help"){
+
+            message.innerHTML = `
+            <br>
+            КОМАНДЫ:<br><br>
+
+            desktop<br>
+            terminal<br>
+            sector7<br>
+            MNM-451
+            `;
+
+        }
+
+        else{
 
             message.innerHTML = `
             <br>
@@ -151,6 +219,7 @@ input.addEventListener("keydown", (e) => {
 
         }
 
+        input.value = "";
     }
 
 });
