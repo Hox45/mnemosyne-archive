@@ -1,3 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+<meta charset="UTF-8">
+<title>NEXUS</title>
+
+<style>
+
+body{
+    background:black;
+    color:#00ff88;
+    font-family:monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.container{
+    width:700px;
+}
+
+h1{
+    font-size:60px;
+}
+
+input{
+    background:black;
+    color:#00ff88;
+    border:none;
+    outline:none;
+    font-size:32px;
+    font-family:monospace;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>NEXUS</h1>
+
+<div>
+> <input type="text" id="codeInput" autofocus>
+</div>
+
+<br>
+
+<div id="message">
+УРОВЕНЬ ДОСТУПА: НИЗКИЙ
+</div>
+
+</div>
+
 <script>
 
 const input = document.getElementById("codeInput");
@@ -70,7 +129,6 @@ input.addEventListener("keydown", (e) => {
 
         message.innerHTML = "";
 
-        // архив
         if(code === "MNM-451"){
 
             message.innerHTML = `
@@ -119,28 +177,24 @@ input.addEventListener("keydown", (e) => {
 
         }
 
-        // рабочий стол
         else if(code.toLowerCase() === "desktop"){
 
             window.location.href = "hox_os_system/index.html";
 
         }
 
-        // терминал
         else if(code.toLowerCase() === "terminal"){
 
             window.location.href = "hox_admin_terminal/index.html";
 
         }
 
-        // сектор
         else if(code.toLowerCase() === "sector7"){
 
             window.location.href = "sector7.html";
 
         }
 
-        // помощь
         else if(code.toLowerCase() === "help"){
 
             message.innerHTML = `
@@ -171,3 +225,6 @@ input.addEventListener("keydown", (e) => {
 });
 
 </script>
+
+</body>
+</html>
